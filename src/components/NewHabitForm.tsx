@@ -1,7 +1,8 @@
 import { Check } from "phosphor-react";
 import * as Checkbox from "@radix-ui/react-checkbox";
+import { FormEvent, useState } from "react";
 
-export const avaiableWeekDays = [
+const avaiableWeekDays = [
   "Domingo",
   "Segunda-Feira",
   "Terça-Feira",
@@ -12,8 +13,28 @@ export const avaiableWeekDays = [
 ];
 
 export function NewHabitForm() {
+  const [title, setTitle] = useState("");
+  const [weekDays, setWeekDays] = useState<number[]>([]);
+
+  function createNewHabit(event: FormEvent) {
+    event.preventDefault();
+    console.log(title, weekDays);
+  }
+
+  function handleToggleWeekDay(weekDay: number) {
+    if (weekDays.includes(weekDay)) {
+      const weekDaysWithRemoveOne = weekDays.filter((day) => day !== weekDay);
+
+      setWeekDays(weekDaysWithRemoveOne);
+    } else {
+      const weekDaysWithAddOne = { ...weekDays, weekDay };
+
+      setWeekDays(weekDaysWithAddOne);
+    }
+  }
+
   return (
-    <form className="w-full flex flex-col mt-6">
+    <form onSubmit={createNewHabit} className="w-full flex flex-col mt-6">
       <label className="font-semibold leading-tight" htmlFor="title">
         Qual seu comprometimento?
       </label>
@@ -24,6 +45,7 @@ export function NewHabitForm() {
         placeholder="Ex: Dormir bem, Excericios"
         autoFocus
         className="p-4 rounded-lg mt-3 bg-zinc-800 text-white palceholder:text-zinc-400"
+        onChange={(event) => setTitle(event.target.value)}
       />
 
       <label className="font-semibold leading-tight mt-4">
@@ -31,15 +53,19 @@ export function NewHabitForm() {
       </label>
 
       <div className="flex flex-col gap-2 mt-3">
-        {avaiableWeekDays.map((day) => {
+        {avaiableWeekDays.map((weekday, index) => {
           return (
-            <Checkbox.Root key={day} className="flex items-center gap-3 group">
+            <Checkbox.Root
+              onCheckedChange={() => handleToggleWeekDay(index)}
+              key={weekday}
+              className="flex items-center gap-3 group"
+            >
               <div className="h-8 w-8 rounded-lg flex items-center justify-center bg-zinc-900 border-2 border-zinc-800 group-data-[state=checked]:bg-green-500  group-data-[state=checked]:border-green-500">
                 <Checkbox.Indicator className="">
                   <Check size={20} className="text-white" />
                 </Checkbox.Indicator>
               </div>
-              <span className=" text-white leading-tight">{day}</span>
+              <span className=" text-white leading-tight">{weekday}</span>
             </Checkbox.Root>
           );
         })}
