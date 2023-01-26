@@ -10,7 +10,6 @@ const weekDaysEn = ["S", "M", "T", "W", "T", "F", "S"];
 const summaryDates = generateDateFromYearBeginning();
 const minimumSummaryDatesSize = 18 * 7; //18 Semanas
 const amountOfDaysToFill = minimumSummaryDatesSize - summaryDates.length;
-console.log(summaryDates);
 
 type Summary = {
   id: string;
