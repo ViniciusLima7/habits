@@ -9,7 +9,7 @@
 
 # 💻 Projeto
 
-Hábits é um sistema Web e [Mobile](https://www.linkedin.com/in/marcos-vinicius-lima/), onde você pode cadastrar hábitos que você quer adquirir e registrar a frequência desses novos hábitos.
+Hábits é um sistema Web e [Mobile](https://github.com/ViniciusLima7/habitsapp), onde você pode cadastrar hábitos que você quer adquirir e registrar a frequência desses novos hábitos.
 
 Link da Aplicação :
 
