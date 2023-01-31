@@ -21,7 +21,6 @@ Link da Aplicação :
 - REACT
 - TAILWIND
 - VITE
-- REACT ROUTER
 - PHOSPHOR REACT
 - AXIOS
 - RADIX/UI
